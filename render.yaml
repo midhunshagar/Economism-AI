@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: econosim-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.api
+    dockerContext: .
+    healthCheckPath: /health
+
+  - type: web
+    name: econosim-frontend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: API_URL
+        fromService:
+          type: web
+          name: econosim-api
+          property: host
