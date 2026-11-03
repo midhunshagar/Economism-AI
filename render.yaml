@@ -18,4 +18,4 @@ services:
         fromService:
           type: web
           name: econosim-api
-          property: host
+          envVarKey: RENDER_EXTERNAL_URL
